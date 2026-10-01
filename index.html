@@ -1,0 +1,1023 @@
+<!--
+  ======================================================================
+  फ़ाइल का नक्शा (यह एक ही फ़ाइल है) - Ctrl+F दबाकर नीचे लिखा नाम खोजें और सीधे उस हिस्से पर पहुँचें
+  ======================================================================
+  भाग A: दिखावट (CSS)    -> खोजें "STYLE.CSS"
+     1.रंग  2.बेसिक  3.Header  4.Dropdown  5.सोशल  6.सेक्शन  7.Hero
+     8.कार्ड  9.About  10.Contact  11.Footer  12.मोबाइल
+  भाग B: ढाँचा (HTML)    -> खोजें "BODY"
+  भाग C: आपका टेक्स्ट      -> खोजें "CONTENT.JS"   <-- ज़्यादातर बदलाव यहीं
+  भाग D: साइट का चलना    -> खोजें "APP.JS"
+  ======================================================================
+-->
+<!DOCTYPE html>
+<html lang="en"> <!-- पेज की भाषा -->
+<head>
+<meta charset="UTF-8"> <!-- हिंदी/अंग्रेज़ी अक्षर सही दिखाने के लिए -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- मोबाइल पर सही साइज़ -->
+<title>SRL Group | Business Administration & Brand Licensing</title> <!-- ब्राउज़र टैब का नाम: यहाँ बदलें -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet"> <!-- Google फ़ॉन्ट -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- आइकन लाइब्रेरी -->
+<style>
+/* ==========================================================
+   STYLE.CSS (भाग A) - यहाँ सिर्फ़ "दिखावट" है (रंग, साइज़, जगह)।
+   टेक्स्ट बदलना हो तो नीचे "CONTENT.JS" (भाग C) खोजें, यहाँ नहीं।
+   ========================================================== */
+
+/* ==========================================================
+   1. रंग (Colors) - रंग बदलने हों तो सिर्फ़ यहीं बदलें
+   ========================================================== */
+
+/* रंग यहाँ बदलें: bg=पीछे का काला, gold=सुनहरा रंग */
+:root {
+  --bg: #050505;
+  --panel: #0d0d0f;
+  --line: rgba(255,255,255,.1);
+  --text: #f2f2f2;
+  --muted: #9a9aa3;
+  --gold: #c9a45c;
+  --gold2: #e2c585;
+}
+
+/* ==========================================================
+   2. बेसिक सेटिंग (पूरे पेज के लिए: फ़ॉन्ट, बैकग्राउंड)
+   ========================================================== */
+
+/* सबका default spacing हटाना */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* स्क्रॉल smooth */
+html {
+  scroll-behavior: smooth;
+}
+
+/* पूरे पेज का फ़ॉन्ट/रंग */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans',sans-serif;
+  line-height: 1.65;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* बड़ी हेडिंग का फ़ॉन्ट (सुंदर serif) */
+h1,h2,h3 {
+  font-family: 'Cormorant Garamond',serif;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* लिंक की underline हटाना */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* कीबोर्ड फ़ोकस की सुनहरी बॉर्डर */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ==========================================================
+   3. ऊपर की पट्टी (Header, Logo, Menu)
+   ========================================================== */
+
+/* ऊपर की fixed पट्टी */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 6%;
+  background: rgba(5,5,5,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+/* लोगो का डिब्बा */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+/* 4 रंगीन डिब्बों वाला लोगो */
+.logo .g {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  width: 24px;
+  height: 24px;
+}
+
+/* चारों डिब्बों के रंग */
+.logo .g b {
+  border-radius: 3px;
+}
+.logo .g b:nth-child(1) {
+  background: #3b82f6;
+}
+.logo .g b:nth-child(2) {
+  background: #ef4444;
+}
+.logo .g b:nth-child(3) {
+  background: #10b981;
+}
+.logo .g b:nth-child(4) {
+  background: #f59e0b;
+}
+
+/* लोगो में "Group" शब्द */
+.logo small {
+  font-size: .8rem;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* मेन्यू एक लाइन में */
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.8rem;
+}
+
+/* मेन्यू लिंक */
+nav a.nl {
+  display: block;
+  padding: 8px 0;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+}
+
+/* hover/active पर सुनहरी लाइन */
+nav a.nl:hover,nav a.nl.on {
+  color: #fff;
+  border-color: var(--gold);
+}
+
+/* ==========================================================
+   4. Dropdown मेन्यू (About पर माउस ले जाने पर खुलने वाला)
+   ========================================================== */
+
+/* dropdown का आधार */
+.dd {
+  position: relative;
+}
+
+/* बड़ा dropdown बॉक्स (2 कॉलम, शुरू में छुपा) */
+.menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 560px;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 12px;
+  background: #101013;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 24px 50px rgba(0,0,0,.8);
+}
+
+/* माउस/कीबोर्ड से खुलेगा */
+.dd:hover .menu,.dd:focus-within .menu {
+  display: grid;
+}
+
+/* dropdown का हर आइटम */
+.menu a {
+  padding: 12px;
+  border-radius: 6px;
+}
+
+/* आइटम hover */
+.menu a:hover {
+  background: rgba(201,164,92,.12);
+}
+
+/* आइटम का नाम और छोटा विवरण */
+.menu b {
+  display: block;
+  font-size: .85rem;
+}
+.menu span {
+  font-size: .72rem;
+  color: var(--muted);
+  line-height: 1.3;
+  display: block;
+}
+
+/* ==========================================================
+   5. सोशल आइकन और मोबाइल मेन्यू बटन
+   ========================================================== */
+
+/* सोशल आइकन की लाइन */
+.soc {
+  display: flex;
+  gap: 8px;
+}
+
+/* गोल सोशल बटन */
+.soc a {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,.08);
+  font-size: .8rem;
+}
+
+/* hover पर सुनहरा */
+.soc a:hover {
+  background: var(--gold);
+  color: #000;
+}
+
+/* मोबाइल मेन्यू बटन (अभी छुपा) */
+.burger {
+  display: none;
+  background: none;
+  border: 1px solid var(--line);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* ==========================================================
+   6. पेज के आम हिस्से (सेक्शन, हेडिंग, छोटा शीर्षक)
+   ========================================================== */
+
+/* header के नीचे से शुरू */
+main {
+  flex: 1;
+  margin-top: 64px;
+}
+
+/* हर सेक्शन की चौड़ाई/खाली जगह */
+.sec {
+  padding: 80px 6%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* बीच में रखने वाला सेक्शन */
+.mid {
+  text-align: center;
+}
+.mid p.lead {
+  margin: 0 auto;
+}
+
+/* छोटा सुनहरा शीर्षक */
+.eyebrow {
+  color: var(--gold);
+  font-size: .7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* सेक्शन की हेडिंग */
+h2.t {
+  font-size: clamp(2rem,4.5vw,3rem);
+  margin: 8px 0 16px;
+}
+
+/* हल्के रंग का विवरण */
+p.lead {
+  color: var(--muted);
+  max-width: 760px;
+}
+
+/* ==========================================================
+   7. होम पेज का बड़ा बैनर (Hero), बटन और आंकड़े
+   ========================================================== */
+
+/* होम बैनर: बाएँ टेक्स्ट, दाएँ फोटो */
+.hero {
+  min-height: calc(100vh - 64px);
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 30px;
+  padding: 60px 6%;
+  background: radial-gradient(circle at 75% 40%,rgba(201,164,92,.16),transparent 55%);
+}
+
+/* बैनर की हेडिंग */
+.hero h1 {
+  font-size: clamp(2.4rem,5vw,4.2rem);
+  font-weight: 500;
+}
+
+/* दूसरी लाइन (Brand Licensing) मोटी */
+.hero h1 b {
+  display: block;
+  font-weight: 600;
+}
+
+/* बैनर का विवरण */
+.hero p {
+  color: var(--muted);
+  max-width: 480px;
+  margin: 16px 0 26px;
+  font-size: .95rem;
+}
+
+/* बैनर की फोटो का डिब्बा (फोटो न हो तो टेक्स्ट दिखे) */
+.photo {
+  aspect-ratio: 4/3;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: #141418 var(--img) center/cover;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: .8rem;
+  text-align: center;
+  padding: 20px;
+}
+
+/* बटन की लाइन */
+.btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+/* सामान्य बटन */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  border-radius: 30px;
+  font: 700 .75rem 'Plus Jakarta Sans';
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.07);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* सुनहरा बटन */
+.btn.gold {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #111;
+}
+
+/* बटन hover */
+.btn:hover {
+  filter: brightness(1.15);
+}
+
+/* 4 आंकड़े 2x2 में */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  max-width: 380px;
+}
+
+/* आंकड़े का आइकन/संख्या/नाम */
+.stats i {
+  color: var(--gold);
+  margin-right: 10px;
+}
+.stats h4 {
+  display: inline;
+  font-size: 1.05rem;
+}
+.stats p {
+  font-size: .72rem;
+  color: var(--muted);
+  margin-left: 28px;
+}
+
+/* ==========================================================
+   8. कार्ड (Sectors, Companies, Certificates में दिखने वाले)
+   ========================================================== */
+
+/* कार्ड ग्रिड (अपने आप कॉलम बदलता है) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  gap: 16px;
+  margin-top: 34px;
+  text-align: left;
+}
+
+/* कार्ड का डिब्बा */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 24px;
+}
+
+/* कार्ड hover */
+.card:hover {
+  border-color: var(--gold);
+}
+
+/* कार्ड का आइकन */
+.card>i {
+  color: var(--gold);
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* कार्ड का शीर्षक और टेक्स्ट */
+.card h4 {
+  font-size: 1rem;
+}
+.card p {
+  font-size: .85rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* कार्ड का छोटा लेबल (CIN आदि) */
+.tag {
+  font-size: .65rem;
+  color: var(--gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+/* अलग रंग की पट्टी वाला सेक्शन */
+.band {
+  background: var(--panel);
+  border-block: 1px solid var(--line);
+}
+
+/* ==========================================================
+   9. About पेज (CEO, इतिहास की टाइमलाइन, टीम)
+   ========================================================== */
+
+/* About: टेक्स्ट बाएँ, फोटो दाएँ */
+.two {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 44px;
+  align-items: center;
+}
+
+/* CEO का टेक्स्ट, बाईं सुनहरी लाइन के साथ */
+.quote {
+  border-left: 2px solid var(--gold);
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: .92rem;
+}
+.quote p {
+  margin-bottom: 14px;
+}
+
+/* CEO की फोटो (न हो तो नाम के अक्षर) */
+.portrait {
+  aspect-ratio: 4/5;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #141418 var(--img) center/cover;
+  display: grid;
+  place-items: center;
+  font: 600 4rem 'Cormorant Garamond';
+  color: var(--gold);
+}
+
+/* इतिहास की टाइमलाइन की खड़ी लाइन */
+.tl {
+  border-left: 1px solid var(--line);
+  margin: 34px 0 0 40px;
+  text-align: left;
+}
+
+/* टाइमलाइन की हर एंट्री */
+.tl div {
+  position: relative;
+  padding: 0 0 28px 26px;
+}
+
+/* सुनहरा बिंदु */
+.tl div::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 8px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* साल का नंबर */
+.tl em {
+  position: absolute;
+  left: -70px;
+  top: 0;
+  font: 600 1.3rem 'Cormorant Garamond';
+  font-style: normal;
+  color: var(--muted);
+}
+
+/* एंट्री का शीर्षक/विवरण */
+.tl h4 {
+  font-size: 1rem;
+}
+.tl p {
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+/* टीम का ग्रिड */
+.team {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  gap: 22px;
+  margin-top: 34px;
+}
+
+/* टीम सदस्य का गोल फोटो */
+.team .av {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background: #18181d var(--img) center/cover;
+  border: 1px solid var(--line);
+}
+
+/* सदस्य का नाम/पद */
+.team h4 {
+  font-size: .85rem;
+}
+.team p {
+  font-size: .72rem;
+  color: var(--muted);
+}
+
+/* ==========================================================
+   10. Contact पेज (Accordion और फ़ॉर्म)
+   ========================================================== */
+
+/* Accordion का डिब्बा */
+.acc {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* Accordion का क्लिक वाला शीर्षक */
+.acc button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: none;
+  border: 0;
+  color: #fff;
+  font: 600 .9rem 'Plus Jakarta Sans';
+  cursor: pointer;
+}
+
+/* अंदर का टेक्स्ट (शुरू में छुपा) */
+.acc .bd {
+  display: none;
+  padding: 0 20px 16px;
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+/* खुलने पर दिखाओ और शीर्षक सुनहरा */
+.acc.open .bd {
+  display: block;
+}
+.acc.open button {
+  color: var(--gold);
+}
+
+/* फ़ॉर्म के बॉक्स */
+form {
+  text-align: left;
+}
+form input,form textarea {
+  width: 100%;
+  background: #09090b;
+  border: 1px solid var(--line);
+  color: #fff;
+  padding: 13px 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font: inherit;
+}
+
+/* क्लिक पर सुनहरी बॉर्डर */
+form input:focus,form textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+/* ==========================================================
+   11. चलने वाली पट्टी और Footer
+   ========================================================== */
+
+/* नीचे की चलने वाली पट्टी */
+.ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  border-block: 1px solid var(--line);
+  padding: 12px 0;
+  background: #08080a;
+}
+
+/* चलने की स्पीड: 40s (कम = तेज़) */
+.ticker div {
+  display: inline-block;
+  animation: tk 40s linear infinite;
+}
+
+/* पट्टी के नाम और बीच की लाइन */
+.ticker span {
+  margin: 0 18px;
+  font-size: .85rem;
+  font-weight: 600;
+}
+.ticker span+span {
+  border-left: 1px solid var(--line);
+  padding-left: 18px;
+}
+
+/* आधा खिसकने पर लूप */
+@keyframes tk {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Footer */
+footer {
+  background: #030303;
+  padding: 46px 6% 18px;
+}
+
+/* Footer के 3 कॉलम */
+.fg {
+  display: grid;
+  grid-template-columns: 1.4fr 1.4fr 1fr;
+  gap: 30px;
+  margin-bottom: 24px;
+}
+
+/* Footer की हेडिंग/टेक्स्ट */
+footer h4 {
+  font-size: .7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+footer p {
+  font-size: .82rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+/* Copyright लाइन */
+.copy {
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+/* ऊपर जाने वाला बटन */
+.up {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: #000;
+  color: var(--gold);
+  cursor: pointer;
+  z-index: 40;
+}
+
+/* ==========================================================
+   12. मोबाइल/छोटी स्क्रीन के लिए बदलाव
+   ========================================================== */
+
+/* ---- मोबाइल के नियम ---- */
+@media (max-width: 900px) {
+  /* मेन्यू बटन दिखाओ, सोशल छुपाओ */
+  .burger {
+    display: block;
+  }
+  .soc {
+    display: none;
+  }
+
+  /* मोबाइल मेन्यू खुलना */
+  nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #0a0a0c;
+    padding: 8px 6% 18px;
+  }
+  nav.open {
+    display: block;
+  }
+
+  /* मेन्यू ऊपर-नीचे, dropdown बंद */
+  nav ul {
+    flex-direction: column;
+    gap: 0;
+  }
+  .menu {
+    display: none!important;
+  }
+
+  /* कॉलम एक के नीचे एक */
+  .hero,.two,.fg {
+    grid-template-columns: 1fr;
+  }
+
+  /* टाइमलाइन के लिए साल की जगह */
+  .tl {
+    margin-left: 52px;
+  }
+
+}
+
+/* animation पसंद न हो तो बंद */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
+}
+</style> <!-- दिखावट (CSS) यहाँ शामिल है -->
+</head>
+<body>
+<!-- ==================== BODY: पेज का ढाँचा ==================== -->
+<header> <!-- ऊपर की पट्टी -->
+  <a class="logo" href="#home"><span class="g"><b></b><b></b><b></b><b></b></span><span id="brand"></span></a> <!-- लोगो; नाम CONFIG से -->
+  <button class="burger" aria-label="Menu" onclick="document.querySelector('nav').classList.toggle('open')"><i class="fa-solid fa-bars"></i></button> <!-- मोबाइल बटन -->
+  <nav aria-label="Main"><ul id="menu"></ul></nav> <!-- मेन्यू CONFIG.menu से -->
+  <div class="soc" id="soc"></div> <!-- सोशल आइकन CONFIG.social से -->
+</header>
+<main id="app"></main> <!-- यहाँ चुना हुआ पेज दिखता है -->
+<div class="ticker"><div id="tick"></div></div> <!-- चलने वाली पट्टी -->
+<footer><div class="fg" id="foot"></div><div class="copy" id="copy"></div></footer> <!-- Footer JS से भरता है -->
+<button class="up" aria-label="Top" onclick="scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button> <!-- ऊपर जाओ बटन -->
+<script>
+/* ==========================================================
+   CONTENT.JS (भाग C) - आपकी साइट का सारा टेक्स्ट यहाँ है।
+   सिर्फ़ "  " (quotes) के अंदर का लिखा हुआ बदलें, बाकी चिह्न (, : [ ] { }) न हटाएँ।
+   ========================================================== */
+
+/* ==================================================================
+   CONFIG - अपना सारा टेक्स्ट, फ़ोन, ईमेल, फोटो सिर्फ़ यहीं बदलें।
+   हर लाइन के आगे हिंदी में लिखा है कि वह क्या है।
+   ================================================================== */
+const CONFIG = {
+
+  // ===== बेसिक जानकारी (नाम, ईमेल, फ़ोन, WhatsApp) =====
+  brand: "TechFix", sub: "Solution", // लोगो का नाम: बड़ा हिस्सा + छोटा सुनहरा हिस्सा
+  group: "TechFix Solution", // Footer/Copyright में दिखने वाला पूरा नाम
+  web: "Techfixsoultion.js.org", // वेबसाइट का पता
+  email: "techfixsolution25@gmail.com", // ईमेल
+  phone: "+91 8859505384", // दिखने वाला फ़ोन नंबर
+  wa: "918859505384", // WhatsApp नंबर (देश कोड के साथ, बिना + और space)
+  year: 2026, // Copyright का साल
+
+  // ===== सोशल मीडिया बटन =====
+  social: [ // सोशल बटन: icon = आइकन का नाम, url = आपका असली लिंक
+    {icon:"fa-brands fa-whatsapp", url:"https://wa.me/918859505384"},
+    {icon:"fa-brands fa-linkedin-in", url:"#"},
+    {icon:"fa-brands fa-x-twitter", url:"#"},
+    {icon:"fa-brands fa-facebook-f", url:"#"}
+  ],
+
+  // ===== ऊपर का मेन्यू और dropdown =====
+  menu: [ // मेन्यू: id = पेज, sub = dropdown आइटम [नाम, विवरण] (ज़रूरी नहीं)
+    {id:"home", t:"Home"},
+    {id:"about", t:"About", sub:[["Who We Are","Overview of our corporate identity."],["What We Do","Our activities and governance model."],["Vision & Mission","Goals that drive our roadmap."],["Our Sectors","The diverse industries we serve."],["Our Companies","Entities within the group."],["Corporate Governance","Our standards and oversight."],["Our History","Key milestones and growth."],["Our Team","The people behind the group."]]},
+    {id:"sectors", t:"Sectors"},
+    {id:"companies", t:"Companies"},
+    {id:"certificates", t:"Certificates"},
+    {id:"contact", t:"Contact"}
+  ],
+
+  // ===== होम पेज का बैनर =====
+  hero: { // होम का बैनर
+    line1: "Business Administration", line2: "Brand Licensing", // हेडिंग की दो लाइनें
+    text: "SRL Group is an organization managing intellectual property, brand licensing and business administration across multiple sectors in India and abroad.", // विवरण
+    image: "", // बिल्डिंग की फोटो का नाम/लिंक, जैसे "building.jpg" (खाली = डिब्बा दिखेगा)
+    stats: [["fa-award","25+","Registered brands"],["fa-chart-line","5+","Service sectors"],["fa-building","8+","Group companies"],["fa-location-dot","Pan-India","Presence"]] // आंकड़े [आइकन, संख्या, नाम]
+  },
+
+  // ===== About पेज: Corporate Identity, CEO, इतिहास, टीम =====
+  identity: { // "Corporate Identity" सेक्शन
+    eyebrow: "About us", title: "Corporate Identity", // छोटा शीर्षक और बड़ी हेडिंग
+    text: "SRL Group serves as the central administrative and corporate governance body for a diverse network of affiliated companies, providing structure, strategic direction and operational oversight across healthcare, technology, education and wellness." // विवरण
+  },
+  ceo: { // CEO वाला हिस्सा
+    role: "About CMD & CEO", name: "Mr. Manish Kumar", initials: "MK", // पद, नाम, फोटो न हो तो अक्षर
+    photo: "C:\Users\Shahrukh\Pictures\IMG_20240201.jpg", // CEO की फोटो का नाम/लिंक, जैसे "ceo.jpg"
+    paras: [ // हर पैराग्राफ अलग लाइन में
+      "Mr. Manish Kumar is the CMD & CEO of SRL Group of Companies. An entrepreneur living with purpose, guided by ethical values and strengthened by the power of meaningful connections.",
+      "He chose to lead with purpose, dignity and a clear vision, treating challenges as stepping stones to greater opportunities.",
+      "Under his leadership, SRL Group stands for resilience, responsible progress and ethical leadership."
+    ]
+  },
+  history: [ // इतिहास टाइमलाइन: year, title, text (अपनी असली घटनाएँ लिखें)
+    {year:"2018", title:"Registration of group trademarks", text:"Registered the group brand identity with the trademark registry."},
+    {year:"2019", title:"Incorporation of a new group company", text:"Incorporated a new entity to expand into allied services."}
+  ],
+  team: [ // टीम: name, role, photo (photo खाली = खाली गोला)
+    {name:"Name Surname", role:"Director", photo:""},
+    {name:"Name Surname", role:"Director", photo:""},
+    {name:"Name Surname", role:"Advisor", photo:""}
+  ],
+
+  // ===== Sectors (सेक्टर कार्ड) =====
+  sectors: [ // सेक्टर कार्ड: icon, title, text
+    {icon:"fa-heart-pulse", title:"Healthcare", text:"Institutional governance for medical facilities."},
+    {icon:"fa-microscope", title:"Diagnostics", text:"Standardized framework for pathology networks."},
+    {icon:"fa-capsules", title:"Pharmaceuticals", text:"Regulatory compliance and brand licensing."},
+    {icon:"fa-laptop-code", title:"Technology", text:"Software automation and digital administration."},
+    {icon:"fa-brain", title:"AI & ML", text:"Intelligent systems for operations and analysis."},
+    {icon:"fa-graduation-cap", title:"Education", text:"Institutions and training programmes."},
+    {icon:"fa-scale-balanced", title:"Legal", text:"Compliance, contracts and IP protection."},
+    {icon:"fa-tv", title:"Media", text:"Brand communication and content."}
+  ],
+  cta: { title: "Ready to collaborate?", text: "Reach out for enquiries, partnerships or any questions." }, // नीचे की "संपर्क करें" पट्टी
+
+  // ===== Companies (कंपनियाँ) =====
+  companies: [ // कंपनियाँ: name, cin, text (CIN अपना असली डालें)
+    {name:"SRL Healthcare Private Limited", cin:"CIN: यहाँ असली CIN डालें", text:"Medical facility operations and support."},
+    {name:"SRL Laboratories Private Limited", cin:"CIN: यहाँ असली CIN डालें", text:"Laboratory administration and diagnostic support."},
+    {name:"SRL Ranbary Private Limited", cin:"CIN: यहाँ असली CIN डालें", text:"Healthcare administration and brand management."}
+  ],
+
+  // ===== Certificates (ट्रेडमार्क) =====
+  marks: [ // ट्रेडमार्क: name, class, text (सिर्फ़ असली डालें)
+    {name:"SRL Healthcare", cls:"Class 44", text:"Medical, diagnostic and wellness services."},
+    {name:"SRL Diagnostics", cls:"Class 42", text:"Laboratory testing and diagnostics."}
+  ],
+  certs: [["8+","Registered trademarks"],["5+","Statutory certificates"]], // Certificates की संख्याएँ [संख्या, नाम]
+
+  // ===== ऑफ़िस पते (Contact और Footer में) =====
+  offices: [ // ऑफ़िस: title, addr
+    {title:"Delhi office", addr:"SRL Group, Maharani Enclave, Uttam Nagar, New Delhi - 110059"},
+    {title:"Patna office", addr:"SRL Group, Shivam Path, Saristabad, Gardanibagh, Patna, Bihar - 800001"}
+  ],
+
+  // ===== नीचे चलने वाली पट्टी =====
+  ticker: ["SRL Clinics","SRL Hospitals","SRL Wellness","SRL Fitness","SRL Cosmetics","SRL Medical","SRL Academy","SRL Pharmacy","SRL Lifecare","SRL Infotech","SRL Diagnostics"] // पट्टी के नाम
+};
+</script> <!-- भाग C: आपका टेक्स्ट -->
+
+<script>
+/* ==========================================================
+   APP.JS (भाग D) - साइट कैसे चलती है (काम करने का तरीका)।
+   टेक्स्ट बदलने के लिए यहाँ नहीं, ऊपर "CONTENT.JS" (भाग C) में जाएँ।
+   ========================================================== */
+
+// ==========================================================
+// 1. छोटे शॉर्टकट और helper functions
+// ==========================================================
+const C = CONFIG; // छोटा नाम
+const $ = id => document.getElementById(id); // id से एलिमेंट ढूँढना
+const img = u => u ? `--img:url('${u}')` : ""; // फोटो हो तो CSS में लगाओ
+const head = (e, t, p) => `<div class="eyebrow">${e}</div><h2 class="t">${t}</h2>${p ? `<p class="lead">${p}</p>` : ""}`; // सेक्शन का शीर्षक बनाने वाला helper
+const cards = l => `<div class="grid">${l.map(s => `<div class="card"><i class="fa-solid ${s.icon}"></i><h4>${s.title}</h4><p>${s.text}</p></div>`).join("")}</div>`; // कार्ड बनाने वाला helper
+const cta = () => `<section class="sec mid band" style="max-width:none">${head("Contact", C.cta.title, C.cta.text)}<div class="btns" style="justify-content:center;margin:20px 0 0"><a class="btn gold" href="#contact">Get in touch</a></div></section>`; // नीचे की संपर्क पट्टी
+
+// ==========================================================
+// 2. हर पेज का ढाँचा (Home, About, Sectors...)
+// ==========================================================
+/* ---------- हर पेज का HTML ---------- */
+const pages = {
+  home: () => `
+    <section class="hero"><div>
+      <h1>${C.hero.line1}<b>${C.hero.line2}</b></h1>
+      <p>${C.hero.text}</p>
+      <div class="btns"><a class="btn gold" href="#about">About us</a><a class="btn" href="#contact">Contact us</a></div>
+      <div class="stats">${C.hero.stats.map(s => `<div><i class="fa-solid ${s[0]}"></i><h4>${s[1]}</h4><p>${s[2]}</p></div>`).join("")}</div>
+    </div><div class="photo" style="${img(C.hero.image)}">${C.hero.image ? "" : "Yahan building ki photo lagayein (CONFIG.hero.image)"}</div></section>
+    <section class="sec mid">${head(C.identity.eyebrow, C.identity.title, C.identity.text)}</section>
+    <section class="sec mid band" style="max-width:none">${head("Ecosystem", "Explore our sectors")}${cards(C.sectors.slice(0, 4))}</section>
+    ${cta()}`,
+
+  about: () => `
+    <section class="sec"><div class="two">
+      <div>${head(C.ceo.role, C.ceo.name)}<div class="quote">${C.ceo.paras.map(p => `<p>${p}</p>`).join("")}</div></div>
+      <div class="portrait" style="${img(C.ceo.photo)}">${C.ceo.photo ? "" : C.ceo.initials}</div>
+    </div></section>
+    <section class="sec mid band" style="max-width:none">${head(C.identity.eyebrow, C.identity.title, C.identity.text)}</section>
+    <section class="sec">${head("Milestones", "Our history")}<div class="tl">${C.history.map(h => `<div><em>${h.year}</em><h4>${h.title}</h4><p>${h.text}</p></div>`).join("")}</div></section>
+    <section class="sec mid band" style="max-width:none">${head("The people", "Our team")}<div class="team">${C.team.map(m => `<div><div class="av" style="${img(m.photo)}"></div><h4>${m.name}</h4><p>${m.role}</p></div>`).join("")}</div></section>`,
+
+  sectors: () => `<section class="sec mid">${head("Ecosystem", "Explore our sectors")}${cards(C.sectors)}</section>${cta()}`,
+
+  companies: () => `<section class="sec mid">${head("Registered entities", "Companies", "The group runs multiple companies across healthcare, diagnostics, technology and business administration.")}
+    <div class="grid">${C.companies.map(c => `<div class="card"><h4>${c.name}</h4><div class="tag">${c.cin}</div><p>${c.text}</p></div>`).join("")}</div></section>`,
+
+  certificates: () => `<section class="sec mid">${head("Intellectual property", "Registered trademarks")}
+    <div class="grid">${C.certs.map(c => `<div class="card mid"><h2 style="color:var(--gold);font-size:3rem">${c[0]}</h2><p>${c[1]}</p></div>`).join("")}</div>
+    <div class="grid">${C.marks.map(m => `<div class="card"><h4>${m.name}</h4><div class="tag">${m.cls}</div><p>${m.text}</p></div>`).join("")}</div></section>`,
+
+  contact: () => `<section class="sec" style="max-width:800px">${head("Directory", "Corporate entities")}
+    ${C.companies.concat(C.offices.map(o => ({name:o.title, text:o.addr}))).map(c => `<div class="acc"><button onclick="this.parentElement.classList.toggle('open')">${c.name}<i class="fa-solid fa-chevron-down"></i></button><div class="bd">${c.text}<br>${C.email} | ${C.phone}</div></div>`).join("")}
+    <h3 style="margin:36px 0 14px;font-size:1.8rem">Inquiry</h3>
+    <form onsubmit="send(event)"><input name="n" placeholder="Full name" required><input name="e" type="email" placeholder="Email address" required><textarea name="m" rows="4" placeholder="Message" required></textarea><button class="btn gold">Send on WhatsApp</button></form></section>`
+};
+
+// ==========================================================
+// 3. Contact फ़ॉर्म (WhatsApp में मैसेज भेजना)
+// ==========================================================
+/* फ़ॉर्म भरने पर WhatsApp में तैयार मैसेज खोलना */
+function send(e) {
+  e.preventDefault(); // पेज रीलोड रोकना
+  const f = e.target; // फ़ॉर्म
+  window.open(`https://wa.me/${C.wa}?text=${encodeURIComponent(`Hello, I am ${f.n.value} (${f.e.value}). ${f.m.value}`)}`, "_blank"); // WhatsApp खोलना
+}
+
+// ==========================================================
+// 4. पेज बदलने का काम (Router)
+// ==========================================================
+/* लिंक (#about) के हिसाब से पेज बदलना */
+function route(id) {
+  const p = pages[id] ? id : "home"; // पेज का नाम सही न हो तो home
+  $("app").innerHTML = pages[p](); // पेज दिखाना
+  document.querySelectorAll("nav a.nl").forEach(a => a.classList.toggle("on", a.dataset.id === p)); // active मेन्यू
+  document.querySelector("nav").classList.remove("open"); // मोबाइल मेन्यू बंद
+  scrollTo(0, 0); // ऊपर ले जाना
+}
+
+// ==========================================================
+// 5. Header, Menu, Footer भरना
+// ==========================================================
+/* स्थिर हिस्से भरना */
+$("brand").innerHTML = `${C.brand} <small>${C.sub}</small>`; // लोगो का नाम
+$("menu").innerHTML = C.menu.map(m => `<li class="${m.sub ? "dd" : ""}"><a class="nl" data-id="${m.id}" href="#${m.id}">${m.t}</a>${m.sub ? `<div class="menu">${m.sub.map(s => `<a href="#${m.id}"><b>${s[0]}</b><span>${s[1]}</span></a>`).join("")}</div>` : ""}</li>`).join(""); // मेन्यू + dropdown
+$("soc").innerHTML = C.social.map(s => `<a href="${s.url}" aria-label="social" target="_blank" rel="noopener"><i class="${s.icon}"></i></a>`).join(""); // सोशल आइकन
+$("tick").innerHTML = [...C.ticker, ...C.ticker].map(t => `<span>${t}</span>`).join(""); // पट्टी दोगुनी ताकि लूप चले
+$("foot").innerHTML = `<div><div class="logo">${C.brand} <small>${C.sub}</small></div><p style="margin-top:10px">A diversified corporate organization managing intellectual property and business administration.</p></div>
+  <div><h4>Our offices</h4>${C.offices.map(o => `<p><b>${o.title}</b><br>${o.addr}</p>`).join("")}</div>
+  <div><h4>Connect with us</h4><p>${C.web}</p><p>${C.email}</p><p>${C.phone}</p></div>`; // Footer के 3 कॉलम
+$("copy").textContent = `© ${C.year} ${C.group}. All rights reserved.`; // Copyright
+
+// ==========================================================
+// 6. बटन क्लिक और साइट की शुरुआत
+// ==========================================================
+function go(id) { // पेज बदलने वाला मुख्य function
+  try { history.pushState(null, "", "#" + id); } catch (e) {} // पता बदलो (न बदल पाए तो भी चलेगा)
+  route(id); // पेज दिखाओ
+}
+document.addEventListener("click", e => { // पेज पर कहीं भी क्लिक हो तो देखो
+  const a = e.target.closest('a[href^="#"]'); // क्या क्लिक # वाले लिंक पर हुआ?
+  if (!a) return; // नहीं तो कुछ मत करो
+  const id = a.getAttribute("href").slice(1); // लिंक का पेज नाम (जैसे about)
+  if (!pages[id]) return; // पेज मौजूद न हो तो छोड़ो
+  e.preventDefault(); // browser का default काम रोको
+  go(id); // हमारा पेज खोलो
+});
+addEventListener("hashchange", () => route(location.hash.slice(1))); // Back बटन दबाने पर भी पेज बदले
+route(location.hash.slice(1)); // पहली बार पेज दिखाओ
+</script> <!-- भाग D: साइट का चलना -->
+</body>
+</html>
